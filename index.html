@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <body>
 
-<h1>Customers</h1>
-<div id="id01"></div>
+<h1>Events</h1>
+<div id="eventlist"></div>
 
 <script>
 var xmlhttp = new XMLHttpRequest();
-var url = "http://www.w3schools.com/website/Customers_MYSQL.php";
+var url = "fjs.php";
 
 xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -21,21 +21,20 @@ xmlhttp.send();
 function myFunction(response) {
     var arr = JSON.parse(response);
     var i;
-    var out = "<table>";
+    var output = "<table>";
 
     for(i = 0; i < arr.length; i++) {
-        out += "<tr><td>" + 
-        arr[i].Name +
+        output += "<tr><td>" + 
+		"<a href=\"http://www.facebook.com/events/" + arr[i].event_id + "\">"  +
+		"<img src=\"" + arr[i].pic_cover + "\" width='80'></a>" + 
         "</td><td>" +
-        arr[i].City +
-        "</td><td>" +
-        arr[i].Country +
-        "</td></tr>";
+        arr[i].page_title +
+        "</td><td>";
     }
-    out += "</table>"
-    document.getElementById("id01").innerHTML = out;
+    output += "</table>"
+    document.getElementById("eventlist").innerHTML = output;
 }
 </script>
 
 </body>
-</html>
+</html> 
