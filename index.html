@@ -8,15 +8,7 @@
 
 <script>
 var xmlhttp = new XMLHttpRequest();
-var url = "fjs.php";
-
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        myFunction(xmlhttp.responseText);
-    }
-}
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+var url = "http://www.mixtup.nl/dev/app/Fave/fjs.php";
 
 function myFunction(response) {
     var arr = JSON.parse(response);
@@ -34,6 +26,16 @@ function myFunction(response) {
     output += "</table>"
     document.getElementById("eventlist").innerHTML = output;
 }
+
+xmlhttp.open("GET", url, true);
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.send();
+
+
 </script>
 
 </body>
