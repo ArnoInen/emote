@@ -1,42 +1,73 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+	<head>
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+		<meta name="viewport"  content="target-densitydpi=device-dpi; width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script>
+			var xmlhttp = new XMLHttpRequest();
+			var url = "http://www.mixtup.nl/dev/app/Fave/fjs.php";
+			
+			function myFunction(response) {
+				var arr = JSON.parse(response);
+				var i;
+				var output = "<table>";
+			
+				for(i = 0; i < arr.length; i++) {
+					output += "<tr><td>" + 
+					"<a href=\"http://www.facebook.com/events/" + arr[i].event_id + "\">"  +
+					"<img src=\"" + arr[i].pic_cover + "\" width='80'></a>" + 
+					"</td><td>" +
+					arr[i].page_title +
+					"</td><td>";
+				}
+				output += "</table>"
+				document.getElementById("eventlist").innerHTML = output;
+			
+			}
+			
+			xmlhttp.open("GET", url, true);
+			xmlhttp.onreadystatechange=function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					myFunction(xmlhttp.responseText);
+				}
+			}
+			xmlhttp.send();
+			
+			function hideOptions(){
+				document.getElementById("options").style.display= "none";
+			}
+			
+			function openOptions(){
+				document.getElementById("options").style.display= "block";
+				$("#options").animate({width: "80%"});
+			}
+			
+			function closeOptions(){
+				$("#options").animate({width: "0"}, "fast", "swing", hideOptions);
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="options">
+			<font>blabla</font>
+			<a href="#" onclick="closeOptions()">Close</a>
+		</div>
 
-<body>
-
-<h1>Events</h1>
-<div id="eventlist"></div>
-
-<script>
-var xmlhttp = new XMLHttpRequest();
-var url = "http://www.mixtup.nl/dev/app/Fave/fjs.php";
-
-function myFunction(response) {
-    var arr = JSON.parse(response);
-    var i;
-    var output = "<table>";
-
-    for(i = 0; i < arr.length; i++) {
-        output += "<tr><td>" + 
-		"<a href=\"http://www.facebook.com/events/" + arr[i].event_id + "\">"  +
-		"<img src=\"" + arr[i].pic_cover + "\" width='80'></a>" + 
-        "</td><td>" +
-        arr[i].page_title +
-        "</td><td>";
-    }
-    output += "</table>"
-    document.getElementById("eventlist").innerHTML = output;
-}
-
-xmlhttp.open("GET", url, true);
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        myFunction(xmlhttp.responseText);
-    }
-}
-xmlhttp.send();
-
-
-</script>
-
-</body>
+		<div id="events">
+			<div id="navigation">
+				<ul id="navlist">
+				<li><a href="javascript:openOptions()">Menu</a></li>
+				<li><a href="#" onclick="">home</a></li>
+				<li><a href="#" onclick="">popular</a></li>
+				<li><a href="#" onclick="">friends</a></li>
+				</ul>
+			</div>		
+		
+			<h1>HOME</h1>
+			<div id="eventlist"></div>
+		</div>
+	</body>
 </html> 
