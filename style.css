@@ -1,0 +1,66 @@
+body {
+	background: #000 url('http://googlenexuswallpaper.org/media/images/1/1/1125.jpg') no-repeat top center fixed;
+    background-color: #000000;
+    background-repeat: repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+    color: #ffffff;
+    font-family: arial,sans-serif;
+    margin: 0;
+    padding: 0;
+	overflow-x: hidden;
+}
+
+div#navigation{
+	/*font-family:"Arial Black", arial,sans-serif;*/
+	width: 100%;
+	font-size:10pt;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 10px 0px 0px 15px;
+}
+
+div#navigation ul li{
+	display: inline-block;
+	*display:inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+
+div#navigation a:link {
+	color: #FFFFFF;
+	text-decoration: none  !important;
+}
+
+div#navigation a:visited {
+	color: #FFFFFF;
+	text-decoration: none  !important;
+}
+
+
+div#options{
+	float:left;
+	background:#fff;
+	height: 600px;
+	width:0px;
+	margin: 5px 0 0 0px;
+	display: none;
+	box-shadow: 1px 0px 20px #000;
+	border-radius: 5px;
+}
+
+div#options a{
+	float:right;
+}
+
+div#events{
+	float:left;
+	width:100%;
+	font-size:9pt;
+	position: absolute;      
+	left: 0px;      
+	top: 0px;
+	z-index: -1;
+}
