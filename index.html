@@ -11,69 +11,43 @@
 		<script>
 		
 			app.initialize();
-			var xmlhttp = new XMLHttpRequest();
-			var url = "http://www.mixtup.nl/dev/app/Fave/fjs.php";
-						
-			function myFunction(response) {
-				var arr = JSON.parse(response);
-				var i;
-				var output = "<table>";
-			
-				for(i = 0; i < arr.length; i++) {
-					output += "<tr><td>" + 
-					"<a href=\"http://www.facebook.com/events/" + arr[i].event_id + "\">"  +
-					"<img src=\"" + arr[i].pic_cover + "\" width='80'></a>" + 
-					"</td><td>" +
-					arr[i].page_title +
-					"</td><td>";
-				}
-				output += "</table>"
-				document.getElementById("eventlist").innerHTML = output;
-			
-			}
-			
-			xmlhttp.open("GET", url, true);
-			xmlhttp.onreadystatechange=function() {
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					myFunction(xmlhttp.responseText);
-				}
-			}
-			xmlhttp.send();
-			
-			function hideOptions(){
-				document.getElementById("options").style.display= "none";
-			}
-			
-			function openOptions(){
-				document.getElementById("options").style.display= "block";
-				$("#options").animate({width: "80%"});
-			}
-			
-			function closeOptions(){
-				$("#options").animate({width: "0"}, "fast", "swing", hideOptions);
-				
-			}
 			
 		</script>
 	</head>
 	<body>
-		<div id="options">
-			<font>blabla</font>
-			<a href="#" onclick="closeOptions()">Close</a>
+		<div id="storage"></div>
+		<div id="menu">
+			<ul>
+				<li>
+					<a href="#">emote</a>
+				</li>	
+				<li>
+					<a href="#">emote</a>
+				</li>
+			</ul>	
+		</div>	
+		<div id="emotes">
+			<ul>
+				<li><a href="#">joy</a></li>
+				<li><a href="#">anger</a></li>
+				<li><a href="#">passion</a></li>
+				<li><a href="#">shame</a></li>
+				<li><a href="#">passion</a></li>
+				<li><a href="#">guilt</a></li>
+				<li><a href="#">love</a></li>
+				<li><a href="#">fear</a></li>
+			</ul>
 		</div>
-
-		<div id="events">
-			<div id="navigation">
-				<ul id="navlist">
-				<li><a href="javascript:openOptions()">Menu</a></li>
-				<li><a href="#" onclick="">home</a></li>
-				<li><a href="#" onclick="">popular</a></li>
-				<li><a href="#" onclick="">friends</a></li>
-				</ul>
-			</div>		
-		
-			<h1>HOME</h1>
-			<div id="eventlist"></div>
-		</div>
+		<script>
+			// Check browser support
+			if (typeof(Storage) !== "undefined") {
+				// Store
+				localStorage.setItem("lastname", "Smith");
+				// Retrieve
+				document.getElementById("storage").innerHTML = localStorage.getItem("lastname");
+			} else {
+				document.getElementById("storage").innerHTML = "Sorry, your browser does not support Web Storage...";
+			}
+		</script>
 	</body>
 </html> 
